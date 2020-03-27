@@ -7,7 +7,7 @@
 .dice {
   text-align: center;
   display: inline-block;
-
+  max-width:250px;
 }
 
 body {

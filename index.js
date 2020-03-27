@@ -1,3 +1,97 @@
+
+// cleaner structure
+
+//these images are system files and should be immutable. The `const` type will allow us to trust this never changes.
+// remember array starts at [0] so a random number 0-5 will correspond here perfectly
+const diceImages = ["dice1.svg","dice2.svg", "dice3.svg","dice4.svg","dice5.svg", "dice6.svg"];
+
+function slotRun(){
+  
+  var animate = true; // start animation 
+  var rolls = rollDice(3); //this will return a rolls[] array with as many rolls as you ask for
+
+  // if something goes wrong in the rollDice() function it will return NULL. catch this error here. 
+  if (rolls === null){
+    console.log("Error! Rolls has to be a positive Integer!");
+    return; // stop running this function because we have no rolls. UI will feel like it did "nothing". 
+  }
+
+  // set animation loop -- every 125 miliseconds it will check to see if the `animate` var is true.
+  // if animate is TRUE -> keep rolling.
+    setInterval(function(){ 
+      if (animate){
+       var diceFrame = rollDice(3); //get a frame to animate
+       document.querySelector(".img1").setAttribute("src", "images/"+diceImages[diceFrame[0]]);
+       document.querySelector(".img2").setAttribute("src", "images/"+diceImages[diceFrame[1]]);
+       document.querySelector(".img3").setAttribute("src", "images/"+diceImages[diceFrame[2]]);
+      }
+    }, 125); // 125 milliseconds each frame approx 10FPS
+
+    // set "Good Luck!"
+    // todo: create an array with some phrases and randomly select one!
+    document.querySelector(".win").innerHTML = "Good Luck!";
+  
+  //display results
+  setTimeout(function(){
+    
+    animate = false; // stops animation loop 
+    
+    //todo: use IDs here. 
+    document.querySelector(".img1").setAttribute("src", "images/"+diceImages[rolls[0]]);
+    document.querySelector(".img2").setAttribute("src", "images/"+diceImages[rolls[1]]);
+    document.querySelector(".img3").setAttribute("src", "images/"+diceImages[rolls[2]]);
+    document.querySelector(".replay").innerHTML = "Play Again"
+
+    if ( rolls[0]===rolls[1] && rolls[0] === rolls[2] ){
+      console.log("WIN");
+      console.log(rolls);
+      document.querySelector(".win").innerHTML = "You Win! "  + (rolls[0]+1)*3   + " coins"; //add 1 to roll number to reprosent its real value before multiplying
+    }
+    else{
+      console.log("LOSE");
+      console.log(rolls);
+      document.querySelector(".win").innerHTML = "Please play again!";
+    }
+  }, 3000); // <-- this number is the milliseconds to wait before executing the code in the block. in this instance our animation would play for 3 seconds. 
+
+  
+}
+
+//roll dice function.
+function rollDice(n) {
+  
+  // if n is less than 1 or NaN... return NULL.
+  if (!parseInt(n) || n < 1){
+    console.log('INVALID INPUT');
+    return null;
+  }
+  
+  // else keep going
+  var i = 1;
+  var rolls = [];
+  //give me as many rolls as asked for. 
+  while (i <= n) {
+    // get me a number between 0 - 5 <-- this is still 6 numbers, but includes 0. makes finding the array position easier. 
+    var diceRoll = Math.floor( Math.random() * 6 );
+    rolls.push(diceRoll);
+    i++;
+  }
+  return rolls;
+
+}
+
+/*
+
+Redundant Code.
+
+// this is considered a brute force attempt at solving the problem.
+// Coding for every possibility, sometimes this is the only way.
+// But more often than not, its not the most effiecent.
+// also, this is where bugs will live.. complicated if/else = bugs. 
+
+
+
+//anything you feel like you are doing twice... automate. separate into its own function. 
 var randomNumber1 = Math.ceil(Math.random()*100); //random 1-6
 var randomNumber2 = Math.ceil(Math.random()*100); // random 1-6
 var randomNumber3 = Math.ceil(Math.random()*100); // random 1-6
@@ -5,7 +99,6 @@ var randomNumber3 = Math.ceil(Math.random()*100); // random 1-6
 var randomDiceImage
 var randomDiceImage2
 var randomDiceImage3
-
 
 if (randomNumber1 <= 40){
   randomDiceImage = "dice1.png";
@@ -83,19 +176,4 @@ else{
   randomDiceImage3 = "dice6.png";
   randomNumber3 = 6;
 }
-
-function slotRun(){
-
-document.getElementsByTagName("img")[0].setAttribute("src", "images/"+randomDiceImage);
-document.getElementsByTagName("img")[1].setAttribute("src", "images/"+randomDiceImage2);
-document.getElementsByTagName("img")[2].setAttribute("src", "images/"+randomDiceImage3);
-document.querySelector(".replay").innerHTML = "Play Again"
-
-
-if (randomNumber1 == randomNumber2 && randomNumber2 == randomNumber3){
-  document.querySelector("p.win").innerHTML = "You Win! "  + randomNumber1*3   + " coins";
-}
-else{
-  document.querySelector("p.win").innerHTML = "Please play again!";
-}
-}
+*/
