@@ -8,7 +8,9 @@ const diceImages = ["dice1.svg","dice2.svg", "dice3.svg","dice4.svg","dice5.svg"
 function slotRun(){
   
   var animate = true; // start animation 
-  var rolls = rollDice(3); //this will return a rolls[] array with as many rolls as you ask for
+  var rolls = rollDice(3); // this will return a rolls[] array with as many rolls as you ask for
+  document.querySelector(".replay").setAttribute("disabled", true); // disable spin button to prevent double spin.
+
 
   // if something goes wrong in the rollDice() function it will return NULL. catch this error here. 
   if (rolls === null){
@@ -41,6 +43,8 @@ function slotRun(){
     document.querySelector(".img2").setAttribute("src", "images/"+diceImages[rolls[1]]);
     document.querySelector(".img3").setAttribute("src", "images/"+diceImages[rolls[2]]);
     document.querySelector(".replay").innerHTML = "Play Again"
+    document.querySelector(".replay").removeAttribute("disabled"); //enable spin button
+
 
     if ( rolls[0]===rolls[1] && rolls[0] === rolls[2] ){
       console.log("WIN");
