@@ -8,33 +8,34 @@
 
   </head>
   <body>
+    <audio id="win-sound">
+      <source src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
 
     <div class="container">
-      <h1>Refresh Me</h1>
+      <h1>Dice Slot</h1>
 
       <div class="dice">
-        <p>Reel 1</p>
-        <img class="img1" src="images/dice6.svg">
+        <img id="img1" src="images/dice6.svg">
       </div>
 
       <div class="dice">
-        <p>Reel 2</p>
-        <img class="img2" src="images/dice6.svg">
+        <img id="img2" src="images/dice6.svg">
       </div>
 
       <div class="dice">
-        <p>Reel 3</p>
-        <img class="img3" src="images/dice6.svg">
+        <img id="img3" src="images/dice6.svg">
       </div>
 
       <div class="container">
-        <p class="win">Ready to try your Luck?! </p>
+        <p id="win">Ready to try your Luck?! </p>
       </div>
 
       <!-- TODO: Make this button pretty! -->
 
       <div class="container">
-        <button class="replay" onclick="slotRun()">Spin</button>
+        <button id="replay" onclick="slotRun()">Spin</button>
       </div>
 
 

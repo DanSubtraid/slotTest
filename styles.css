@@ -39,3 +39,21 @@ footer {
   font-family: 'Indie Flower', cursive;
 
 }
+
+#replay {
+  font-size: 100%;
+  padding: .5em 1em;
+  width:100px;
+  color:white;
+  background-color: #0078e7;
+  border:none;
+  border-radius:2px;
+  display: inline-block;
+  zoom: 1;
+  line-height: normal;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: none;
+}
