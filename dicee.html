@@ -8,14 +8,17 @@
 
   </head>
   <body>
+    <!-- Audio Tag -->
     <audio id="win-sound">
       <source src="" type="audio/mp3">
       Your browser does not support the audio element.
     </audio>
-
+    <!-- Reels -->
     <div class="container">
       <h1>Dice Slot</h1>
-
+      <div class="container">
+        <p id="player-total">100 Coins</p>
+      </div>
       <div class="dice">
         <img id="img1" src="images/dice6.svg">
       </div>
@@ -27,14 +30,18 @@
       <div class="dice">
         <img id="img3" src="images/dice6.svg">
       </div>
-
+      <!-- Sentiment -->
       <div class="container">
         <p id="win">Ready to try your Luck?! </p>
       </div>
-
-      <!-- TODO: Make this button pretty! -->
-
-      <div class="container">
+      <!-- Bet Value -->
+      <div id="bet-value" class="container">
+        <input type="radio" name="betValue" checked="true" value="1" onclick="setBet(0)">1 Coin 
+        <input type="radio" name="betValue" value="2" onclick="setBet(1)">2 Coins 
+        <input type="radio" name="betValue" value="3" onclick="setBet(2)">3 Coins
+      </div>
+      <!-- Spin Button -->
+      <div class="container replayBtn">
         <button id="replay" onclick="slotRun()">Spin</button>
       </div>
 

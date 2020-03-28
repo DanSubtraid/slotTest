@@ -42,7 +42,7 @@ footer {
 
 #replay {
   font-size: 100%;
-  padding: .5em 1em;
+  padding: 5px;
   width:100px;
   color:white;
   background-color: #0078e7;
@@ -56,4 +56,12 @@ footer {
   text-align: center;
   cursor: pointer;
   -webkit-user-drag: none;
+}
+
+.replayBtn{
+  margin-top: 15px;
+}
+
+#bet-value{
+  color:white;
 }
